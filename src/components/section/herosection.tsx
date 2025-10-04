@@ -119,14 +119,6 @@ export default function HeroSection() {
     return (
         <div className="relative overflow-hidden">
             {/* Background gradients */}
-            <div className="pointer-events-none absolute inset-0">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(168,85,247,0.35),transparent_60%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(96,165,250,0.30),transparent_65%)] mix-blend-screen" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_70%,rgba(163,230,53,0.25),transparent_70%)] mix-blend-screen" />
-                <div className="absolute inset-0 backdrop-blur-[2px]" />
-            </div>
-            <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white via-white/60 to-transparent pointer-events-none" />
-
             <div className="relative z-10">
                 {/* Hero Copy */}
                 <section className="text-center">
@@ -172,10 +164,9 @@ export default function HeroSection() {
                         {/* SVG connectors */}
                         <svg className="absolute inset-0 w-full h-full" viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}>
                             <defs>
-                                <linearGradient id="metricLine" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stopColor="#a855f7" />
-                                    <stop offset="50%" stopColor="#84cc16" />
-                                    <stop offset="100%" stopColor="#6366f1" />
+                                <linearGradient id="metricLine" x1="0%" y1="0%" x2="120%" y2="0%">
+                                    <stop offset="0%" stopColor="#000000ff" />
+                                    <stop offset="100%" stopColor="#a855f7" />
                                 </linearGradient>
                             </defs>
                             {cards.map((c, i) => {
@@ -207,9 +198,6 @@ export default function HeroSection() {
                             style={{ left: PHONE_X, top: PHONE_Y }}
                         >
                             <div className="pointer-events-none absolute inset-0 rounded-[38px] before:absolute before:inset-0 before:rounded-[38px] before:bg-[linear-gradient(120deg,rgba(255,255,255,0.6),rgba(255,255,255,0)_40%,rgba(0,0,0,0.05))]" />
-                            <div className="absolute top-2 left-1/2 -translate-x-1/2 w-32 h-6 bg-black/80 rounded-full flex items-center justify-center">
-                                <div className="w-16 h-2 rounded bg-gradient-to-r from-gray-700 to-gray-600" />
-                            </div>
                             <div className="bg-gray-800/95 py-3 px-4 flex items-center gap-3 rounded-t-[38px]">
                                 <div className="w-9 h-9 bg-lime-400 rounded-xl flex items-center justify-center">
                                     <span className="text-gray-800 font-bold text-xs">zc</span>
@@ -229,22 +217,12 @@ export default function HeroSection() {
                                 <div className="bg-purple-500 text-white rounded-2xl px-4 py-3 ml-auto max-w-[50%]">
                                     <p className="text-sm font-medium">Men</p>
                                 </div>
-                                <div className="bg-purple-500 text-white rounded-2xl p-4 max-w-[90%] shadow-sm">
-                                    <p className="text-sm">Glasses, here are the top selling green lens...</p>
-                                    <div className="bg-white/20 rounded-xl p-3 mt-3">
-                                        <p className="text-xs">Thank you</p>
-                                    </div>
+                                <div className="bg-white rounded-2xl p-4 max-w-[85%] shadow-sm">
+                                    <p className="text-sm text-gray-800">Glasses, here are the top selling green lens...</p>
                                 </div>
-                            </div>
-                            <div className="p-3 border-t bg-white/70 backdrop-blur flex gap-2">
-                                <div className="flex-1">
-                                    <div className="h-9 bg-gray-100 rounded-xl flex items-center px-3 text-xs text-gray-500">
-                                        Type a message...
-                                    </div>
+                                <div className="bg-purple-500 text-white rounded-2xl px-4 py-3 ml-auto max-w-[50%]">
+                                    <p className="text-sm font-medium">Thank you</p>
                                 </div>
-                                <button className="w-9 h-9 rounded-xl bg-purple-500 text-white text-xs font-semibold">
-                                    ➤
-                                </button>
                             </div>
                         </motion.div>
 
