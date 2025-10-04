@@ -1,8 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { useState } from "react"; // <-- added
 
 export default function HeroSection() {
+    const [hovered, setHovered] = useState<number | null>(null);
+    const active = hovered ?? 0; // 0 = first button default
     return (
         <div className="relative">
             {/* gradient blob */}
@@ -13,6 +15,8 @@ export default function HeroSection() {
             <div className="relative z-10">
                 {/* Header text */}
                 <section className="text-center">
+                    <br></br>
+                    <br></br>
                     <motion.h1
                         className="text-5xl md:text-[56px] font-bold max-w-4xl mx-auto leading-tight text-[#17202b] mb-10"
                         initial={{ opacity: 0, y: 30 }}
@@ -23,13 +27,31 @@ export default function HeroSection() {
                         turns Browsers into Buyers
                     </motion.h1>
 
-                    <div className="flex justify-center gap-4 mb-14">
-                        <button className="bg-[#b9fd33] hover:bg-[#a6f52a] text-[#0f1621] px-7 py-3 rounded-full font-semibold text-sm transition-colors">
-                            Start free trial
-                        </button>
-                        <button className="px-7 py-3 rounded-full font-semibold text-sm border border-gray-300 text-gray-700 bg-white/60 hover:bg-white transition-colors">
-                            Book a demo
-                        </button>
+                    {/* Button pill group */}
+                    <div className="flex justify-center mb-14">
+                        <div className="relative inline-flex items-center rounded-full bg-white/70 border border-gray-200 p-1 backdrop-blur-sm shadow-sm">
+                            {/* Sliding highlight */}
+                            <div
+                                className="absolute top-1 left-1 h-[calc(100%-8px)] w-[calc(50%-8px)] rounded-full bg-[#b9fd33] shadow transition-transform duration-300 ease-out"
+                                style={{ transform: active === 0 ? "translateX(0)" : "translateX(100%)" }}
+                            />
+                            <button
+                                onMouseEnter={() => setHovered(0)}
+                                onMouseLeave={() => setHovered(null)}
+                                className={`relative z-10 px-8 py-3 rounded-full text-sm font-semibold transition-colors duration-200
+                                            ${active === 0 ? "text-[#0f1621]" : "text-gray-700 hover:text-[#0f1621]"}`}
+                            >
+                                Start free trial
+                            </button>
+                            <button
+                                onMouseEnter={() => setHovered(1)}
+                                onMouseLeave={() => setHovered(null)}
+                                className={`relative z-10 px-8 py-3 rounded-full text-sm font-semibold transition-colors duration-200
+                                            ${active === 1 ? "text-[#0f1621]" : "text-gray-700 hover:text-[#0f1621]"}`}
+                            >
+                                Book a demo
+                            </button>
+                        </div>
                     </div>
                 </section>
 
@@ -58,8 +80,8 @@ export default function HeroSection() {
 
                             <div className="bg-purple-500 text-white rounded-2xl px-4 py-3 ml-auto max-w-[70%]">
                                 <p className="text-sm font-medium">Yes sure!</p>
-                            </div> 
- 
+                            </div>
+
                             <div className="bg-white rounded-2xl p-4 max-w-[85%] shadow-sm">
                                 <p className="text-sm text-gray-800">Are you looking for a model for men or women?</p>
                             </div>
