@@ -102,8 +102,10 @@ export default function HeroSection() {
             className: "bg-lime-400/85 text-gray-900 rounded-full px-6 py-3",
             w: 230,
             h: 64,
-            end: { x: 45 + 230 / 2,
-                 y: 550 - 64 / 2 }, // top-right corner of pill
+            end: {
+                x: 45 + 230 / 2,
+                y: 550 - 64 / 2
+            }, // top-right corner of pill
             content: <span className="text-sm font-semibold">Instant Setup</span>
         },
         {
@@ -112,6 +114,12 @@ export default function HeroSection() {
             y: 520,
             anchor: "bottomRight",
             className: "bg-purple-500/85 text-white rounded-full px-5 py-3",
+            w: 230,
+            h: 64,
+            end: {
+                x: 600 + 230 / 2,
+                y: 550 - 55 / 2
+            },
             content: <span className="text-sm font-medium">95+ Languages</span>
         }
     ];
@@ -226,7 +234,7 @@ export default function HeroSection() {
                             className="absolute shadow-[0_8px_40px_-8px_rgba(0,0,0,0.15)] w-[320px] h-[600px] rounded-[38px] flex flex-col overflow-hidden border border-white/60 ring-1 ring-black/5 bg-gradient-to-br from-white to-white/90"
                             style={{ left: PHONE_X, top: PHONE_Y }}
                         >
-                            <div className="pointer-events-none absolute inset-0 rounded-[38px] before:absolute before:inset-0 before:rounded-[38px] before:bg-[linear-gradient(120deg,rgba(255,255,255,0.6),rgba(255,255,255,0)_40%,rgba(0,0,0,0.05))]" />
+                            <div className="pointer-events-none absolute inset-0 rounded-[38px] before:absolute before:inset-0 before:rounded-[38px] " />
                             <div className="bg-gray-800/95 py-3 px-4 flex items-center gap-3 rounded-t-[38px]">
                                 <div className="w-9 h-9 bg-lime-400 rounded-xl flex items-center justify-center">
                                     <span className="text-gray-800 font-bold text-xs">zc</span>
@@ -314,11 +322,11 @@ export default function HeroSection() {
                             <motion.div variants={bubbleVariants} className="bg-purple-500 text-white rounded-2xl px-3 py-2 ml-auto max-w-[50%]">
                                 <p className="text-xs font-medium">Men</p>
                             </motion.div>
-                            <motion.div variants={bubbleVariants} className="bg-purple-500 text-white rounded-2xl p-3 max-w-[90%] shadow-sm">
-                                <p className="text-xs">Glasses, here are the top selling green lens...</p>
-                                <motion.div variants={bubbleVariants} className="bg-white/20 rounded-xl p-2 mt-2">
-                                    <p className="text-[10px]">Thank you</p>
-                                </motion.div>
+                            <motion.div variants={bubbleVariants} className="bg-white rounded-2xl p-4 max-w-[85%] shadow-sm">
+                                <p className="text-sm text-gray-800">Glasses, here are the top selling green lens...</p>
+                            </motion.div>
+                            <motion.div variants={bubbleVariants} className="bg-purple-500 text-white rounded-2xl px-4 py-3 ml-auto max-w-[50%]">
+                                <p className="text-sm font-medium">Thank you</p>
                             </motion.div>
                         </motion.div>
                     </motion.div>
