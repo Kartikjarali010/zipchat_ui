@@ -44,13 +44,16 @@ export default function HeroSection() {
     const cards: CardDef[] = [
         {
             id: "aov",
-            x: 35,
-            y: 165,
+            x: -25,
+            y: 140, // moved up
             anchor: "topLeft",
             className: "bg-purple-500/80 text-white",
             w: 190,
-            h: 130,
-            end: { x: 35 + 190 / 2, y: 165 - 130 / 2 }, // top-right corner
+            h: 120, // adjusted height estimate for better line alignment
+            end: {
+                x: 25 + 190 / 2,          // same x corner
+                y: 150 - 5           // new y so quadratic path meets corner
+            },
             content: (
                 <div>
                     <div className="flex items-center gap-2 mb-1">
@@ -93,13 +96,14 @@ export default function HeroSection() {
         },
         {
             id: "setup",
-            x: 45,
-            y: 550,
+            x: 55,
+            y: 520,
             anchor: "bottomLeft",
             className: "bg-lime-400/85 text-gray-900 rounded-full px-6 py-3",
             w: 230,
             h: 64,
-            end: { x: 45 + 230 / 2, y: 550 - 64 / 2 }, // top-right corner of pill
+            end: { x: 45 + 230 / 2,
+                 y: 550 - 64 / 2 }, // top-right corner of pill
             content: <span className="text-sm font-semibold">Instant Setup</span>
         },
         {
