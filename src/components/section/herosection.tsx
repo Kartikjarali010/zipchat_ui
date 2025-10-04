@@ -32,22 +32,25 @@ export default function HeroSection() {
         id: string;
         x: number;
         y: number;
-        title?: string;
-        subtitle?: string;
-        icon?: string;
         className: string;
         anchor: keyof typeof phoneAnchors;
         content: React.ReactNode;
+        w?: number;       // optional width estimate
+        h?: number;       // optional height estimate
+        end?: { x: number; y: number }; // optional path end override (corner)
     };
 
     // Cards with exact coordinates (center points) – tune as needed
     const cards: CardDef[] = [
         {
             id: "aov",
-            x: 125,
+            x: 35,
             y: 165,
             anchor: "topLeft",
             className: "bg-purple-500/80 text-white",
+            w: 190,
+            h: 130,
+            end: { x: 35 + 190 / 2, y: 165 - 130 / 2 }, // top-right corner
             content: (
                 <div>
                     <div className="flex items-center gap-2 mb-1">
@@ -62,7 +65,7 @@ export default function HeroSection() {
         {
             id: "cart",
             x: 680,
-            y: 160,
+            y: 180,
             anchor: "topRight",
             className: "bg-gray-900/90 text-white w-14 h-14 flex items-center justify-center p-0",
             content: (
@@ -73,8 +76,8 @@ export default function HeroSection() {
         },
         {
             id: "conversion",
-            x: 690,
-            y: 330,
+            x: 800,
+            y: 350,
             anchor: "midRight",
             className: "bg-lime-400/85 text-gray-900",
             content: (
@@ -90,16 +93,19 @@ export default function HeroSection() {
         },
         {
             id: "setup",
-            x: 165,
-            y: 430,
+            x: 45,
+            y: 550,
             anchor: "bottomLeft",
             className: "bg-lime-400/85 text-gray-900 rounded-full px-6 py-3",
+            w: 230,
+            h: 64,
+            end: { x: 45 + 230 / 2, y: 550 - 64 / 2 }, // top-right corner of pill
             content: <span className="text-sm font-semibold">Instant Setup</span>
         },
         {
             id: "langs",
-            x: 620,
-            y: 470,
+            x: 700,
+            y: 520,
             anchor: "bottomRight",
             className: "bg-purple-500/85 text-white rounded-full px-5 py-3",
             content: <span className="text-sm font-medium">95+ Languages</span>
@@ -110,10 +116,29 @@ export default function HeroSection() {
     const buildPath = (from: { x: number; y: number }, to: { x: number; y: number }) => {
         const mx = (from.x + to.x) / 2;
         const my = (from.y + to.y) / 2;
-        // slight curve control point offset
         const cx = mx + (to.x - from.x) * 0.1;
         const cy = my - 40;
         return `M ${from.x} ${from.y} Q ${cx} ${cy} ${to.x} ${to.y}`;
+    };
+
+    // Chat animation variants
+    const chatContainerVariants = {
+        hidden: {},
+        show: {
+            transition: {
+                staggerChildren: 0.30,      // slower stagger
+                delayChildren: 0.40         // later initial start
+            }
+        }
+    };
+    const bubbleVariants = {
+        hidden: { opacity: 0, y: 8, scale: 0.97 },
+        show: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: { type: "spring" as const, stiffness: 160, damping: 30 } // gentler, slower spring
+        }
     };
 
     return (
@@ -171,7 +196,7 @@ export default function HeroSection() {
                             </defs>
                             {cards.map((c, i) => {
                                 const from = phoneAnchors[c.anchor];
-                                const to = { x: c.x, y: c.y };
+                                const to = c.end ? c.end : { x: c.x, y: c.y };
                                 return (
                                     <motion.path
                                         key={c.id}
@@ -182,7 +207,7 @@ export default function HeroSection() {
                                         strokeLinecap="round"
                                         initial={{ pathLength: 0 }}
                                         whileInView={{ pathLength: 1 }}
-                                        transition={{ duration: 1.4, delay: i * 0.15, ease: "easeInOut" }}
+                                        transition={{ duration: 2.0, delay: i * 0.20, ease: "easeInOut" }} // slower line draw
                                     />
                                 );
                             })}
@@ -204,26 +229,32 @@ export default function HeroSection() {
                                 </div>
                                 <p className="text-white text-xs font-medium tracking-wide">ZipChat • Live</p>
                             </div>
-                            <div className="flex-1 p-4 bg-gray-50 space-y-3 overflow-y-auto">
-                                <div className="bg-white rounded-2xl p-4 max-w-[85%] shadow-sm">
+                            <motion.div
+                                className="flex-1 p-4 bg-gray-50 space-y-3 overflow-y-auto"
+                                variants={chatContainerVariants}
+                                initial="hidden"
+                                whileInView="show"
+                                viewport={{ once: true }}
+                            >
+                                <motion.div variants={bubbleVariants} className="bg-white rounded-2xl p-4 max-w-[85%] shadow-sm">
                                     <p className="text-sm text-gray-800">Do you have sunglasses with green lenses?</p>
-                                </div>
-                                <div className="bg-purple-500 text-white rounded-2xl px-4 py-3 ml-auto max-w-[70%]">
+                                </motion.div>
+                                <motion.div variants={bubbleVariants} className="bg-purple-500 text-white rounded-2xl px-4 py-3 ml-auto max-w-[70%]">
                                     <p className="text-sm font-medium">Yes sure!</p>
-                                </div>
-                                <div className="bg-white rounded-2xl p-4 max-w-[85%] shadow-sm">
+                                </motion.div>
+                                <motion.div variants={bubbleVariants} className="bg-white rounded-2xl p-4 max-w-[85%] shadow-sm">
                                     <p className="text-sm text-gray-800">Are you looking for a model for men or women?</p>
-                                </div>
-                                <div className="bg-purple-500 text-white rounded-2xl px-4 py-3 ml-auto max-w-[50%]">
+                                </motion.div>
+                                <motion.div variants={bubbleVariants} className="bg-purple-500 text-white rounded-2xl px-4 py-3 ml-auto max-w-[50%]">
                                     <p className="text-sm font-medium">Men</p>
-                                </div>
-                                <div className="bg-white rounded-2xl p-4 max-w-[85%] shadow-sm">
+                                </motion.div>
+                                <motion.div variants={bubbleVariants} className="bg-white rounded-2xl p-4 max-w-[85%] shadow-sm">
                                     <p className="text-sm text-gray-800">Glasses, here are the top selling green lens...</p>
-                                </div>
-                                <div className="bg-purple-500 text-white rounded-2xl px-4 py-3 ml-auto max-w-[50%]">
+                                </motion.div>
+                                <motion.div variants={bubbleVariants} className="bg-purple-500 text-white rounded-2xl px-4 py-3 ml-auto max-w-[50%]">
                                     <p className="text-sm font-medium">Thank you</p>
-                                </div>
-                            </div>
+                                </motion.div>
+                            </motion.div>
                         </motion.div>
 
                         {/* Cards */}
@@ -260,32 +291,33 @@ export default function HeroSection() {
                             </div>
                             <p className="text-white text-xs font-medium tracking-wide">ZipChat • Live</p>
                         </div>
-                        <div className="flex-1 p-4 bg-gray-50 space-y-3 overflow-y-auto">
-                            <div className="bg-white rounded-2xl p-3 max-w-[85%] shadow-sm">
+                        <motion.div
+                            className="flex-1 p-4 bg-gray-50 space-y-3 overflow-y-auto"
+                            variants={chatContainerVariants}
+                            initial="hidden"
+                            whileInView="show"
+                            viewport={{ once: true }}
+                        >
+                            <motion.div variants={bubbleVariants} className="bg-white rounded-2xl p-3 max-w-[85%] shadow-sm">
                                 <p className="text-xs text-gray-800">Do you have sunglasses with green lenses?</p>
-                            </div>
-                            <div className="bg-purple-500 text-white rounded-2xl px-3 py-2 ml-auto max-w-[70%]">
+                            </motion.div>
+                            <motion.div variants={bubbleVariants} className="bg-purple-500 text-white rounded-2xl px-3 py-2 ml-auto max-w-[70%]">
                                 <p className="text-xs font-medium">Yes sure!</p>
-                            </div>
-                            <div className="bg-white rounded-2xl p-3 max-w-[85%] shadow-sm">
+                            </motion.div>
+                            <motion.div variants={bubbleVariants} className="bg-white rounded-2xl p-3 max-w-[85%] shadow-sm">
                                 <p className="text-xs text-gray-800">Are you looking for a model for men or women?</p>
-                            </div>
-                            <div className="bg-purple-500 text-white rounded-2xl px-3 py-2 ml-auto max-w-[50%]">
+                            </motion.div>
+                            <motion.div variants={bubbleVariants} className="bg-purple-500 text-white rounded-2xl px-3 py-2 ml-auto max-w-[50%]">
                                 <p className="text-xs font-medium">Men</p>
-                            </div>
-                            <div className="bg-purple-500 text-white rounded-2xl p-3 max-w-[90%] shadow-sm">
+                            </motion.div>
+                            <motion.div variants={bubbleVariants} className="bg-purple-500 text-white rounded-2xl p-3 max-w-[90%] shadow-sm">
                                 <p className="text-xs">Glasses, here are the top selling green lens...</p>
-                                <div className="bg-white/20 rounded-xl p-2 mt-2">
+                                <motion.div variants={bubbleVariants} className="bg-white/20 rounded-xl p-2 mt-2">
                                     <p className="text-[10px]">Thank you</p>
-                                </div>
-                            </div>
-                        </div>
+                                </motion.div>
+                            </motion.div>
+                        </motion.div>
                     </motion.div>
-                    <div className="mt-8 grid gap-4 text-center">
-                        <div className="text-sm font-semibold text-purple-700">27%+ AOV Increase</div>
-                        <div className="text-sm font-semibold text-lime-600">16.3% Chat Conversion</div>
-                        <div className="text-sm font-semibold text-purple-600">95+ Languages</div>
-                    </div>
                 </section>
 
                 {/* Scrolling company logos (unchanged) */}
