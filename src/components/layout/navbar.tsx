@@ -19,49 +19,51 @@ export default function Navbar() {
                     <Image
                         src="/logo.png"
                         alt="Zipchat logo"
-                        width={300} // increased intrinsic width
-                        height={300} // increased intrinsic height
+                        width={420}
+                        height={420}
                         priority
-                        className="h-14 md:h-16 w-auto transition-all"
+                        className="h-20 md:h-24 w-auto transition-all"
                     />
                 </Link>
 
                 {/* Center nav pill */}
                 <nav
                     aria-label="Main navigation"
-                    className="hidden md:flex rounded-full bg-grey px-2 py-1 gap-1"
+                    className="hidden md:flex"
                 >
-                    {items.map((i) => (
-                        <button
-                            key={i.label}
-                            className="group flex-none px-7 py-2.5 rounded-full text-sm font-medium
-                         flex items-center justify-center gap-2 whitespace-nowrap
-                         bg-gray-100 border border-gray-200 text-gray-600
-                         transition-colors
-                         hover:bg-[#b9fd33] hover:border-[#b9fd33] hover:text-[#0f1621]
-                         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b9fd33]"
-                        >
-                            <span>{i.label}</span>
-                            {i.dropdown && (
-                                <svg
-                                    className="w-3.5 h-3.5 text-gray-500 transition-transform duration-300 group-hover:rotate-180"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            )}
-                        </button>
-                    ))}
+                    <div className="flex items-center gap-6 rounded-full bg-gray-100/90 border border-gray-200 px-15 py-3 backdrop-blur-sm shadow-sm">
+                        {items.map((i) => (
+                            <button
+                                key={i.label}
+                                className="group flex-none px-6 py-2 rounded-full text-sm font-medium
+                                flex items-center justify-center gap-2 whitespace-nowrap
+                                text-gray-600 transition-colors
+                                bg-white border border-gray-200
+                                hover:bg-[#b9fd33] hover:text-[#0f1621] hover:border-[#b9fd33]
+                                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b9fd33]"
+                            >
+                                <span>{i.label}</span>
+                                {i.dropdown && (
+                                    <svg
+                                        className="w-3.5 h-3.5 text-gray-500 transition-transform duration-300 group-hover:rotate-180"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                )}
+                            </button>
+                        ))}
+                    </div>
                 </nav>
 
                 {/* Right actions */}
                 <div className="flex items-center gap-3">
                     <button
                         aria-label="Account"
-                        className="w-10 h-10 rounded-full bg-white border border-gray-200
+                        className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200
                        text-gray-600 flex items-center justify-center
                        transition-colors
                        hover:bg-[#b9fd33] hover:border-[#b9fd33] hover:text-[#0f1621]
