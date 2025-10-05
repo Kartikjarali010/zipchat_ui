@@ -19,8 +19,8 @@ export default function Navbar() {
                     <Image
                         src="/logo.png"
                         alt="Zipchat logo"
-                        width={250} // increased intrinsic width
-                        height={250} // increased intrinsic height
+                        width={300} // increased intrinsic width
+                        height={300} // increased intrinsic height
                         priority
                         className="h-14 md:h-16 w-auto transition-all"
                     />
@@ -29,14 +29,14 @@ export default function Navbar() {
                 {/* Center nav pill */}
                 <nav
                     aria-label="Main navigation"
-                    className="hidden md:flex rounded-full bg-[#f2f3f5] px-2 py-1 gap-1"
+                    className="hidden md:flex rounded-full bg-grey px-2 py-1 gap-1"
                 >
                     {items.map((i) => (
                         <button
                             key={i.label}
-                            className="group flex-1 px-6 py-2 rounded-full text-sm font-medium
-                         flex items-center justify-center gap-1
-                         bg-white border border-gray-200 text-gray-600
+                            className="group flex-none px-7 py-2.5 rounded-full text-sm font-medium
+                         flex items-center justify-center gap-2 whitespace-nowrap
+                         bg-gray-100 border border-gray-200 text-gray-600
                          transition-colors
                          hover:bg-[#b9fd33] hover:border-[#b9fd33] hover:text-[#0f1621]
                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b9fd33]"
@@ -81,7 +81,7 @@ export default function Navbar() {
                     </button>
                     <button
                         className="px-7 py-2 rounded-full text-sm font-semibold
-                       bg-white border border-gray-200 text-gray-700
+                       bg-black border border-black text-white
                        transition-colors
                        hover:bg-[#b9fd33] hover:border-[#b9fd33] hover:text-[#0f1621]
                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b9fd33]"
