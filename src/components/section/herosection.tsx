@@ -334,13 +334,13 @@ export default function HeroSection() {
 
                 {/* Scrolling company logos (unchanged) */}
                 <motion.section
-                    className="py-10 border-t border-gray-200 mt-12 relative overflow-hidden"
+                    className="py-10 border-t border-white/10 mt-12 relative overflow-hidden"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
                     <div className="relative">
-                        <div className="marquee flex gap-12 items-center will-change-transform">
+                        <div className="marquee flex gap-20 items-center will-change-transform">
                             {logos.concat(logos).map((l, i) => (
                                 <span
                                     key={i + l}
@@ -350,8 +350,6 @@ export default function HeroSection() {
                                 </span>
                             ))}
                         </div>
-                        <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent" />
-                        <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent" />
                     </div>
                 </motion.section>
             </div>
@@ -370,7 +368,8 @@ export default function HeroSection() {
                         transform: translateX(-50%);
                     }
                 }
-            `}</style>
+            `}
+            </style>
         </div>
     );
 }
