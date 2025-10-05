@@ -35,7 +35,7 @@ export default function Navbar() {
                         {items.map((i) => (
                             <button
                                 key={i.label}
-                                className="group flex-none px-6 py-2 rounded-full text-sm font-medium
+                                className="group cursor-pointer flex-none px-6 py-2 rounded-full text-sm font-medium
                                 flex items-center justify-center gap-2 whitespace-nowrap
                                 text-gray-600 transition-colors
                                 bg-white border border-gray-200
@@ -63,7 +63,7 @@ export default function Navbar() {
                 <div className="flex items-center gap-3">
                     <button
                         aria-label="Account"
-                        className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200
+                        className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 cursor-pointer
                        text-gray-600 flex items-center justify-center
                        transition-colors
                        hover:bg-[#b9fd33] hover:border-[#b9fd33] hover:text-[#0f1621]
@@ -82,7 +82,7 @@ export default function Navbar() {
                         </svg>
                     </button>
                     <button
-                        className="px-7 py-2 rounded-full text-sm font-semibold
+                        className="px-7 py-2 rounded-full text-sm font-semibold cursor-pointer
                        bg-black border border-black text-white
                        transition-colors
                        hover:bg-[#b9fd33] hover:border-[#b9fd33] hover:text-[#0f1621]

@@ -178,15 +178,15 @@ export default function HeroSection() {
                             <button
                                 onMouseEnter={() => setHovered(0)}
                                 onMouseLeave={() => setHovered(null)}
-                                className={`relative z-10 px-8 py-3 rounded-full text-sm font-semibold transition-colors duration-200 ${active === 0 ? "text-[#0f1621]" : "text-gray-700 hover:text-[#0f1621]"
+                                className={`cursor-pointer relative z-10 px-8 py-3 rounded-full text-sm font-semibold transition-colors duration-200 ${active === 0 ? "text-[#0f1621]" : "text-gray-700 hover:text-[#0f1621]"
                                     }`}
                             >
-                                Start free trial
+                                Start free trial 
                             </button>
                             <button
                                 onMouseEnter={() => setHovered(1)}
                                 onMouseLeave={() => setHovered(null)}
-                                className={`relative z-10 px-8 py-3 rounded-full text-sm font-semibold transition-colors duration-200 ${active === 1 ? "text-[#0f1621]" : "text-gray-700 hover:text-[#0f1621]"
+                                className={`cursor-pointer relative z-10 px-8 py-3 rounded-full text-sm font-semibold transition-colors duration-200 ${active === 1 ? "text-[#0f1621]" : "text-gray-700 hover:text-[#0f1621]"
                                     }`}
                             >
                                 Book a demo
@@ -229,7 +229,7 @@ export default function HeroSection() {
                         <motion.div
                             initial={{ scale: 0.94, opacity: 0 }}
                             whileInView={{ scale: 1, opacity: 1 }}
-                            transition={{ duration: 0.7 }}
+                            transition={{ duration: 1.7 }}
                             viewport={{ once: true }}
                             className="absolute shadow-[0_8px_40px_-8px_rgba(0,0,0,0.15)] w-[320px] h-[600px] rounded-[38px] flex flex-col overflow-hidden border border-white/60 ring-1 ring-black/5 bg-gradient-to-br from-white to-white/90"
                             style={{ left: PHONE_X, top: PHONE_Y }}
