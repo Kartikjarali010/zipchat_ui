@@ -227,12 +227,14 @@ export default function HeroSection() {
 
                         {/* Localized blue gradient directly behind the phone */}
                         <div
-                            className="absolute pointer-events-none rounded-[60px] bg-gradient-to-br from-purple-500/30 via-purple-400/20 to-transparent blur-xl"
+                            className="absolute pointer-events-none rounded-full blur-3xl"
                             style={{
                                 left: PHONE_X - 40,
                                 top: PHONE_Y - 40,
                                 width: PHONE_W + 80,
-                                height: PHONE_H + 80
+                                height: PHONE_H + 80, background:
+                                    "radial-gradient(circle at 50% 35%, rgba(88,20,140,0.95) 0%, rgba(76,17,122,0.9) 25%, rgba(60,12,96,0.75) 55%, rgba(60,12,96,0.0) 80%)",
+                                boxShadow: "0 30px 90px rgba(76,17,122,0.85), inset 0 8px 30px rgba(255,255,255,0.03)"
                             }}
                         />
 
