@@ -181,7 +181,7 @@ export default function HeroSection() {
                                 className={`cursor-pointer relative z-10 px-8 py-3 rounded-full text-sm font-semibold transition-colors duration-200 ${active === 0 ? "text-[#0f1621]" : "text-gray-700 hover:text-[#0f1621]"
                                     }`}
                             >
-                                Start free trial 
+                                Start free trial
                             </button>
                             <button
                                 onMouseEnter={() => setHovered(1)}
@@ -225,13 +225,24 @@ export default function HeroSection() {
                             })}
                         </svg>
 
+                        {/* Localized blue gradient directly behind the phone */}
+                        <div
+                            className="absolute pointer-events-none rounded-[60px] bg-gradient-to-br from-purple-500/30 via-purple-400/20 to-transparent blur-xl"
+                            style={{
+                                left: PHONE_X - 40,
+                                top: PHONE_Y - 40,
+                                width: PHONE_W + 80,
+                                height: PHONE_H + 80
+                            }}
+                        />
+
                         {/* Phone */}
                         <motion.div
                             initial={{ scale: 0.94, opacity: 0 }}
                             whileInView={{ scale: 1, opacity: 1 }}
                             transition={{ duration: 1.7 }}
                             viewport={{ once: true }}
-                            className="absolute shadow-[0_8px_40px_-8px_rgba(0,0,0,0.15)] w-[320px] h-[600px] rounded-[38px] flex flex-col overflow-hidden border border-white/60 ring-1 ring-black/5 bg-gradient-to-br from-white to-white/90"
+                            className="absolute z-20 shadow-[0_8px_40px_-8px_rgba(0,0,0,0.15)] w-[320px] h-[600px] rounded-[38px] flex flex-col overflow-hidden border border-white/60 ring-1 ring-black/5 bg-gradient-to-br from-white to-white/90"
                             style={{ left: PHONE_X, top: PHONE_Y }}
                         >
                             <div className="pointer-events-none absolute inset-0 rounded-[38px] before:absolute before:inset-0 before:rounded-[38px] " />
